@@ -1,0 +1,72 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0fdf4;
+  color: #1b4332;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+h1 {
+  text-align: center;
+  color: #2d6a4f;
+}
+
+#malla {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.semestre {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 220px;
+}
+
+.semestre h2 {
+  text-align: center;
+  background-color: #40916c;
+  color: white;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.ramo {
+  padding: 10px;
+  background-color: #95d5b2;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.ramo:hover {
+  background-color: #74c69d;
+}
+
+.ramo.disabled {
+  pointer-events: none;
+  background-color: #d8f3dc;
+  color: #ccc;
+  opacity: 0.5;
+}
+
+.ramo.tachado {
+  opacity: 0.4;
+}
+
+.ramo.tachado::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 90%;
+  height: 2px;
+  background-color: red;
+  transform: rotate(-10deg);
+}
