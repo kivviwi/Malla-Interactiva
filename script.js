@@ -1,169 +1,140 @@
-const ramos = {
-  "Semestre I": {
-    "Bases Moleculares": ["Bases Moleculares y celulares", "Bases celulares"],
-    "Métodos de cuantificación": ["Bioestadística"],
-    "Introducción al manejo de la información": ["Bioestadística"],
-    "Diversidad animal": ["Ecología"],
-    "Orientación a la medicina veterinaria": []
-  },
-  "Semestre II": {
-    "Bases Moleculares y celulares": ["Fisiología I", "Bases inmunológicas", "Agentes biológicos patógenos"],
-    "Bases celulares": ["Fisiología I", "Agentes biológicos patógenos"],
-    "Bioestadística": ["Epidemiología general", "MAIG"],
-    "Ecología": ["Conducta animal", "MAEP"],
-    "Desarrollo y estructura microscópica del organismo animal": [],
-    "Estructura macroscópica del organismo animal": ["Fisiología II", "MAAT"],
-    "Práctica general básica": ["Práctica clínica básica", "Práctica de campo básica"]
-  },
-  "Semestre III": {
-    "Fisiología I": ["Fisiología II", "Farmacología general"],
-    "Epidemiología general": ["Enfermedades infecciosas y parasitarias"],
-    "Estructura macroscópica del organismo animal": [],
-    "Desarrollo y estructura microscópica del organismo animal": [],
-    "Bases económicas": [],
-    "Conducta animal": ["MACA"],
-    "Práctica clínica básica": [],
-    "Práctica de campo básica": []
-  },
-  "Semestre IV": {
-    "Bases inmunológicas": ["Patología I", "Bases de técnicas diagnósticas"],
-    "Fisiología II": ["Patología I", "Nutrición"],
-    "Farmacología general": [],
-    "Agentes biológicos patógenos": ["Enfermedades infecciosas y parasitarias", "Bases de técnicas diagnósticas"],
-    "Introducción a la producción animal": ["Nutrición", "MACA"],
-    "Bases económicas": ["MAPLAN"],
-    "MAEP": [],
-    "Módulo interno básico": []
-  },
-  "Semestre V": {
-    "Enfermedades infecciosas y parasitarias": ["Salud pública veterinaria", "Patología en explotaciones"],
-    "Patología I": ["Patología II", "Métodos de exploración clínica"],
-    "Nutrición": ["Alimentación"],
-    "Bases de técnicas diagnósticas": ["Métodos de exploración clínica"],
-    "MAIG": ["Genética básica"]
-  },
-  "Semestre VI": {
-    "Genética básica": ["Biotecnología reproductiva", "Reproducción"],
-    "Patología II": ["Patología III", "Patología diagnóstica", "Biotecnología reproductiva", "Reproducción", "Medicina nvl I"],
-    "Alimentación": ["Manejos productivos I", "Manejos productivos II"],
-    "Métodos de exploración clínica": ["Medicina nvl I"],
-    "MAAT": []
-  },
-  "Semestre VII": {
-    "Patología III": ["Patología en explotaciones"],
-    "Patología diagnóstica": ["Medicina interna nvl II", "Anestesiología y cirugía"],
-    "Reproducción": ["Manejos productivos I", "Manejos productivos II", "Obstetricia y ginecología"],
-    "Biotecnología reproductiva": ["Obstetricia y ginecología"],
-    "Medicina nvl I": ["Medicina interna nvl II", "Anestesiología y cirugía"],
-    "Salud pública veterinaria": ["Inocuidad de los alimentos", "Gestión ambiental"],
-    "MACA": []
-  },
-  "Semestre VIII": {
-    "Gestión ambiental": ["Impacto ambiental"],
-    "Inocuidad de los alimentos": ["Aseguramiento y calidad de alimentos", "MABL"],
-    "Manejos productivos I": [],
-    "Obstetricia y ginecología": [],
-    "Medicina nvl I": [],
-    "Practica pre-profesional": [],
-    "MAPLAN": [],
-    "Módulo int. Ciclo pre-profesional": []
-  },
-  "Semestre IX": {
-    "Impacto ambiental": [],
-    "Aseguramiento y calidad de alimentos": [],
-    "Manejos productivos II": [],
-    "Medicina interna nvl II": [],
-    "Anestesiología y cirugía": [],
-    "Patología en explotaciones": [],
-    "MABL": []
-  },
-  "Semestre X": {
-    "Internado medicina individual": [],
-    "Internado producción animal": [],
-    "Internado medicina preventiva": [],
-    "Practica profesional": [],
-    "Taller de titulación": []
-  }
-};
+// === script.js ===
 
-const aprobados = new Set();
+const cursos = [
+  // SEMESTRE I
+  { nombre: "Bases Moleculares", id: "bases-moleculares", semestre: 1, desbloquea: ["bases-moleculares-celulares", "bases-celulares"] },
+  { nombre: "Métodos de cuantificación", id: "metodos-cuantificacion", semestre: 1, desbloquea: ["bioestadistica"] },
+  { nombre: "Introducción al manejo de la información", id: "manejo-info", semestre: 1, desbloquea: ["bioestadistica"], requiere: ["metodos-cuantificacion"] },
+  { nombre: "Diversidad animal", id: "diversidad-animal", semestre: 1, desbloquea: ["ecologia"] },
+  { nombre: "Orientación a la medicina veterinaria", id: "orientacion-medvet", semestre: 1 },
 
-function crearMalla() {
-  const contenedor = document.getElementById("malla");
-  for (const [semestre, cursos] of Object.entries(ramos)) {
-    const divSemestre = document.createElement("div");
-    divSemestre.className = "semestre";
-    const titulo = document.createElement("h2");
-    titulo.textContent = semestre;
-    divSemestre.appendChild(titulo);
+  // SEMESTRE II
+  { nombre: "Bases Moleculares y celulares", id: "bases-moleculares-celulares", semestre: 2, desbloquea: ["fisiologia-1", "bases-inmunologicas", "agentes-patogenos"], requiere: ["bases-moleculares"] },
+  { nombre: "Bases celulares", id: "bases-celulares", semestre: 2, desbloquea: ["fisiologia-1", "agentes-patogenos"], requiere: ["bases-moleculares"] },
+  { nombre: "Bioestadística", id: "bioestadistica", semestre: 2, desbloquea: ["epidemiologia", "maig"], requiere: ["metodos-cuantificacion", "manejo-info"] },
+  { nombre: "Ecología", id: "ecologia", semestre: 2, desbloquea: ["conducta-animal", "maep"], requiere: ["diversidad-animal"] },
+  { nombre: "Desarrollo y estructura microscópica del organismo animal", id: "desarrollo-microscopico", semestre: 2 },
+  { nombre: "Estructura macroscópica del organismo animal", id: "estructura-macroscopica", semestre: 2, desbloquea: ["fisiologia-2", "maat"] },
+  { nombre: "Práctica general básica", id: "practica-general", semestre: 2, desbloquea: ["practica-clinica", "practica-campo"] },
 
-    for (const curso of Object.keys(cursos)) {
-      const divRamo = document.createElement("div");
-      divRamo.className = "ramo locked";
-      divRamo.textContent = curso;
-      divRamo.dataset.nombre = curso;
-      divRamo.addEventListener("click", aprobarRamo);
-      divSemestre.appendChild(divRamo);
-    }
+  // SEMESTRE III
+  { nombre: "Fisiología I", id: "fisiologia-1", semestre: 3, desbloquea: ["fisiologia-2", "farmacologia"] },
+  { nombre: "Epidemiología general", id: "epidemiologia", semestre: 3, desbloquea: ["enfermedades-infecciosas"] },
+  { nombre: "Estructura macroscópica del organismo animal", id: "estructura-macroscopica", semestre: 3 },
+  { nombre: "Desarrollo y estructura microscópica del organismo animal", id: "desarrollo-microscopico", semestre: 3 },
+  { nombre: "Bases económicas", id: "bases-economicas", semestre: 3 },
+  { nombre: "Conducta animal", id: "conducta-animal", semestre: 3, desbloquea: ["maca"], requiere: ["ecologia"] },
+  { nombre: "Práctica clínica básica", id: "practica-clinica", semestre: 3 },
+  { nombre: "Práctica de campo básica", id: "practica-campo", semestre: 3 },
 
-    contenedor.appendChild(divSemestre);
-  }
+  // SEMESTRE IV
+  { nombre: "Bases inmunológicas", id: "bases-inmunologicas", semestre: 4, desbloquea: ["patologia-1", "tecnicas-diagnosticas"] },
+  { nombre: "Fisiología II", id: "fisiologia-2", semestre: 4, desbloquea: ["patologia-1", "nutricion"] },
+  { nombre: "Farmacología general", id: "farmacologia", semestre: 4 },
+  { nombre: "Agentes biológicos patógenos", id: "agentes-patogenos", semestre: 4, desbloquea: ["enfermedades-infecciosas", "tecnicas-diagnosticas"] },
+  { nombre: "Introducción a la producción animal", id: "intro-produccion", semestre: 4, desbloquea: ["nutricion", "maca"] },
+  { nombre: "Bases económicas", id: "bases-economicas", semestre: 4 },
+  { nombre: "MAEP", id: "maep", semestre: 4 },
+  { nombre: "Módulo interno básico", id: "modulo-basico", semestre: 4 },
+  { nombre: "MAAT", id: "maat", semestre: 4 },
 
-  desbloquearIniciales();
+  // SEMESTRE V
+  { nombre: "Enfermedades infecciosas y parasitarias", id: "enfermedades-infecciosas", semestre: 5, desbloquea: ["salud-publica", "patologia-explotaciones"] },
+  { nombre: "Patología I", id: "patologia-1", semestre: 5, desbloquea: ["patologia-2", "exploracion-clinica"] },
+  { nombre: "Nutrición", id: "nutricion", semestre: 5, desbloquea: ["alimentacion"] },
+  { nombre: "Bases de técnicas diagnósticas", id: "tecnicas-diagnosticas", semestre: 5, desbloquea: ["exploracion-clinica"] },
+  { nombre: "MAIG", id: "maig", semestre: 5, desbloquea: ["genetica"] },
+
+  // SEMESTRE VI
+  { nombre: "Genética básica", id: "genetica", semestre: 6, desbloquea: ["biotecnologia", "reproduccion"] },
+  { nombre: "Patología II", id: "patologia-2", semestre: 6, desbloquea: ["patologia-3", "patologia-diagnostica", "biotecnologia", "reproduccion", "medicina-1"] },
+  { nombre: "Alimentación", id: "alimentacion", semestre: 6, desbloquea: ["productivos-1", "productivos-2"] },
+  { nombre: "Métodos de exploración clínica", id: "exploracion-clinica", semestre: 6, desbloquea: ["medicina-1"] },
+  { nombre: "MAAT", id: "maat", semestre: 6 },
+
+  // SEMESTRE VII
+  { nombre: "Patología III", id: "patologia-3", semestre: 7, desbloquea: ["patologia-explotaciones"] },
+  { nombre: "Patología diagnóstica", id: "patologia-diagnostica", semestre: 7, desbloquea: ["medicina-2", "anestesia-cirugia"] },
+  { nombre: "Reproducción", id: "reproduccion", semestre: 7, desbloquea: ["productivos-1", "productivos-2", "obstetricia"] },
+  { nombre: "Biotecnología reproductiva", id: "biotecnologia", semestre: 7, desbloquea: ["obstetricia"] },
+  { nombre: "Medicina nvl I", id: "medicina-1", semestre: 7, desbloquea: ["medicina-2", "anestesia-cirugia"] },
+  { nombre: "Salud pública veterinaria", id: "salud-publica", semestre: 7, desbloquea: ["inocuidad", "gestion-ambiental"] },
+  { nombre: "MACA", id: "maca", semestre: 7 },
+
+  // SEMESTRE VIII
+  { nombre: "Gestión ambiental", id: "gestion-ambiental", semestre: 8, desbloquea: ["impacto"] },
+  { nombre: "Inocuidad de los alimentos", id: "inocuidad", semestre: 8, desbloquea: ["aseguramiento", "mabl"] },
+  { nombre: "Manejos productivos I", id: "productivos-1", semestre: 8 },
+  { nombre: "Obstetricia y ginecología", id: "obstetricia", semestre: 8 },
+  { nombre: "Medicina nvl I", id: "medicina-1", semestre: 8 },
+  { nombre: "Práctica pre-profesional", id: "pre-profesional", semestre: 8 },
+  { nombre: "MAPLAN", id: "maplan", semestre: 8 },
+  { nombre: "Módulo int. Ciclo pre-profesional", id: "modulo-preprof", semestre: 8 },
+
+  // SEMESTRE IX
+  { nombre: "Impacto ambiental", id: "impacto", semestre: 9 },
+  { nombre: "Aseguramiento y calidad de alimentos", id: "aseguramiento", semestre: 9 },
+  { nombre: "Manejos productivos II", id: "productivos-2", semestre: 9 },
+  { nombre: "Medicina interna nvl II", id: "medicina-2", semestre: 9 },
+  { nombre: "Anestesiología y cirugía", id: "anestesia-cirugia", semestre: 9 },
+  { nombre: "Patología en explotaciones", id: "patologia-explotaciones", semestre: 9 },
+  { nombre: "MABL", id: "mabl", semestre: 9 },
+
+  // SEMESTRE X
+  { nombre: "Internado medicina individual", id: "internado-individual", semestre: 10 },
+  { nombre: "Internado producción animal", id: "internado-produccion", semestre: 10 },
+  { nombre: "Internado medicina preventiva", id: "internado-preventiva", semestre: 10 },
+  { nombre: "Práctica profesional", id: "practica-profesional", semestre: 10 },
+  { nombre: "Taller de titulación", id: "taller-titulacion", semestre: 10 }
+];
+
+const malla = document.getElementById("malla");
+
+function crearCurso(curso) {
+  const div = document.createElement("div");
+  div.className = "curso bloqueado";
+  div.id = curso.id;
+  div.innerText = curso.nombre;
+  div.dataset.semestre = curso.semestre;
+  div.onclick = () => aprobarCurso(curso.id);
+  return div;
 }
 
-function desbloquearIniciales() {
-  document.querySelectorAll(".ramo").forEach(div => {
-    const nombre = div.dataset.nombre;
-    const requisitos = obtenerRequisitos(nombre);
-    if (requisitos.length === 0) {
-      div.classList.remove("locked");
+function dibujarMalla() {
+  let semestreActual = 0;
+  cursos.forEach(curso => {
+    if (curso.semestre !== semestreActual) {
+      semestreActual = curso.semestre;
+      const titulo = document.createElement("div");
+      titulo.className = "semestre";
+      titulo.innerText = `Semestre ${semestreActual}`;
+      malla.appendChild(titulo);
+    }
+    const div = crearCurso(curso);
+    malla.appendChild(div);
+  });
+  actualizarBloqueos();
+}
+
+function aprobarCurso(id) {
+  const curso = document.getElementById(id);
+  if (curso.classList.contains("bloqueado")) return;
+  curso.classList.add("aprobado");
+  localStorage.setItem(id, "aprobado");
+  actualizarBloqueos();
+}
+
+function actualizarBloqueos() {
+  cursos.forEach(curso => {
+    const div = document.getElementById(curso.id);
+    const aprobado = localStorage.getItem(curso.id) === "aprobado";
+    div.classList.toggle("aprobado", aprobado);
+    const requisitos = curso.requiere || [];
+    const desbloqueado = requisitos.every(req => localStorage.getItem(req) === "aprobado");
+    if (!requisitos.length || desbloqueado) {
+      div.classList.remove("bloqueado");
     }
   });
 }
 
-function obtenerRequisitos(curso) {
-  const requisitos = [];
-  for (const cursos of Object.values(ramos)) {
-    for (const [ramo, dependientes] of Object.entries(cursos)) {
-      if (dependientes.includes(curso)) {
-        requisitos.push(ramo);
-      }
-    }
-  }
-  return requisitos;
-}
-
-function aprobarRamo(e) {
-  const div = e.currentTarget;
-  const nombre = div.dataset.nombre;
-  if (div.classList.contains("locked")) return;
-
-  if (!div.classList.contains("approved")) {
-    div.classList.add("approved");
-    aprobados.add(nombre);
-    actualizarDesbloqueos();
-  } else {
-    div.classList.remove("approved");
-    aprobados.delete(nombre);
-    actualizarDesbloqueos();
-  }
-}
-
-function actualizarDesbloqueos() {
-  document.querySelectorAll(".ramo").forEach(div => {
-    const nombre = div.dataset.nombre;
-    const requisitos = obtenerRequisitos(nombre);
-    const desbloqueado = requisitos.every(r => aprobados.has(r));
-
-    if (requisitos.length === 0 || desbloqueado) {
-      div.classList.remove("locked");
-    } else {
-      if (!div.classList.contains("approved")) {
-        div.classList.add("locked");
-      }
-    }
-  });
-}
-
-crearMalla();
+dibujarMalla();
