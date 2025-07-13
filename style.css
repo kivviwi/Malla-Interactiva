@@ -1,86 +1,57 @@
 body {
-  font-family: 'Baloo 2', cursive;
-  background-color: #f5f1ec;
-  color: #4e342e;
+  font-family: 'Fredoka One', cursive;
+  background-color: #f8f1e3;
   margin: 0;
   padding: 0;
+  color: #3e2c1c;
 }
 
 header {
-  background-color: #8d6e63;
-  padding: 1rem;
-  text-align: center;
+  background-color: #8b5e3c;
   color: white;
-  background-image: url('https://i.imgur.com/X4ZfMfT.png');
-  background-size: contain;
-  background-repeat: repeat;
-}
-
-header img {
-  max-width: 200px;
-  border-radius: 20px;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-top: 0.5rem;
+  text-align: center;
+  padding: 1em;
 }
 
 #malla {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 20px;
 }
 
 .semestre {
-  border-left: 6px solid #a1887f;
-  padding-left: 1rem;
-  margin-bottom: 1rem;
+  grid-column: span 5;
+  font-size: 26px;
+  font-weight: bold;
+  margin: 15px 0 5px;
+  color: #5a3a1b;
 }
 
-.semestre h2 {
-  background-color: #d7ccc8;
-  padding: 0.5rem;
-  border-radius: 10px;
-  font-size: 1.5rem;
-}
-
-.ramo {
-  display: inline-block;
-  background-color: #efebe9;
-  padding: 0.5rem 1rem;
-  border: 2px solid #8d6e63;
-  border-radius: 10px;
-  margin: 0.5rem;
+.curso {
+  background-color: #d2b48c;
+  border: 3px solid #7a4e2d;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
   cursor: pointer;
-  user-select: none;
-  transition: background-color 0.3s, transform 0.2s;
   position: relative;
+  transition: transform 0.2s;
 }
 
-.ramo.locked {
-  background-color: #d7ccc8;
-  color: #aaa;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.ramo.approved {
-  background-color: #a5d6a7;
-  color: #2e7d32;
-  border-color: #2e7d32;
-}
-
-.ramo:hover:not(.locked) {
+.curso:hover {
   transform: scale(1.05);
 }
 
-.ramo::after {
-  content: '🐾';
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  font-size: 1rem;
+.curso.bloqueado {
   opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.curso.aprobado::after {
+  content: \"🐾\";
+  font-size: 30px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
 }
