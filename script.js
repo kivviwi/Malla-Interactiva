@@ -1,532 +1,169 @@
-
-const ramos = [
-  {
-    "nombre": "Bases Moleculares",
-    "id": "bases_moleculares",
-    "desbloquea": [
-      "bases_moleculares_y_celulares",
-      "bases_celulares"
-    ],
-    "semestre": 1
-  },
-  {
-    "nombre": "M\u00e9todos de cuantificaci\u00f3n",
-    "id": "m\u00e9todos_de_cuantificaci\u00f3n",
-    "desbloquea": [
-      "bioestad\u00edstica"
-    ],
-    "semestre": 1
-  },
-  {
-    "nombre": "Introducci\u00f3n al manejo de la informaci\u00f3n",
-    "id": "introducci\u00f3n_al_manejo_de_la_informaci\u00f3n",
-    "desbloquea": [
-      "bioestad\u00edstica"
-    ],
-    "semestre": 1
-  },
-  {
-    "nombre": "Diversidad animal",
-    "id": "diversidad_animal",
-    "desbloquea": [
-      "ecolog\u00eda"
-    ],
-    "semestre": 1
-  },
-  {
-    "nombre": "Orientaci\u00f3n a la medicina veterinaria",
-    "id": "orientaci\u00f3n_a_la_medicina_veterinaria",
-    "desbloquea": [],
-    "semestre": 1
-  },
-  {
-    "nombre": "Bases Moleculares y celulares",
-    "id": "bases_moleculares_y_celulares",
-    "desbloquea": [
-      "fisiolog\u00eda_i",
-      "bases_inmunol\u00f3gicas",
-      "agentes_biol\u00f3gicos_pat\u00f3genos"
-    ],
-    "semestre": 2
-  },
-  {
-    "nombre": "Bases celulares",
-    "id": "bases_celulares",
-    "desbloquea": [
-      "fisiolog\u00eda_i",
-      "agentes_biol\u00f3gicos_pat\u00f3genos"
-    ],
-    "semestre": 2
-  },
-  {
-    "nombre": "Bioestad\u00edstica",
-    "id": "bioestad\u00edstica",
-    "desbloquea": [
-      "epidemiolog\u00eda",
-      "maig"
-    ],
-    "semestre": 2
-  },
-  {
-    "nombre": "Ecolog\u00eda",
-    "id": "ecolog\u00eda",
-    "desbloquea": [
-      "conducta_animal",
-      "maep"
-    ],
-    "semestre": 2
-  },
-  {
-    "nombre": "Desarrollo y estructura microsc\u00f3pica del organismo animal",
-    "id": "desarrollo_y_estructura_microsc\u00f3pica_del_organismo_animal",
-    "desbloquea": [],
-    "semestre": 2
-  },
-  {
-    "nombre": "Estructura macrosc\u00f3pica del organismo animal",
-    "id": "estructura_macrosc\u00f3pica_del_organismo_animal",
-    "desbloquea": [],
-    "semestre": 2
-  },
-  {
-    "nombre": "Pr\u00e1ctica general b\u00e1sica",
-    "id": "pr\u00e1ctica_general_b\u00e1sica",
-    "desbloquea": [
-      "pr\u00e1ctica_cl\u00ednica_b\u00e1sica",
-      "pr\u00e1ctica_de_campo_b\u00e1sica"
-    ],
-    "semestre": 2
-  },
-  {
-    "nombre": "Fisiolog\u00eda I",
-    "id": "fisiolog\u00eda_i",
-    "desbloquea": [
-      "fisiolog\u00eda_ii",
-      "farmacolog\u00eda_general"
-    ],
-    "semestre": 3
-  },
-  {
-    "nombre": "Epidemiolog\u00eda general",
-    "id": "epidemiolog\u00eda_general",
-    "desbloquea": [
-      "enfermedades_infecciosas_y_parasitarias"
-    ],
-    "semestre": 3
-  },
-  {
-    "nombre": "Estructura macrosc\u00f3pica del organismo animal",
-    "id": "estructura_macrosc\u00f3pica_del_organismo_animal",
-    "desbloquea": [],
-    "semestre": 3
-  },
-  {
-    "nombre": "Desarrollo y estructura microsc\u00f3pica del organismo animal",
-    "id": "desarrollo_y_estructura_microsc\u00f3pica_del_organismo_animal",
-    "desbloquea": [],
-    "semestre": 3
-  },
-  {
-    "nombre": "Bases econ\u00f3micas",
-    "id": "bases_econ\u00f3micas",
-    "desbloquea": [],
-    "semestre": 3
-  },
-  {
-    "nombre": "Conducta animal",
-    "id": "conducta_animal",
-    "desbloquea": [
-      "maca"
-    ],
-    "semestre": 3
-  },
-  {
-    "nombre": "Pr\u00e1ctica cl\u00ednica b\u00e1sica",
-    "id": "pr\u00e1ctica_cl\u00ednica_b\u00e1sica",
-    "desbloquea": [],
-    "semestre": 3
-  },
-  {
-    "nombre": "Pr\u00e1ctica de campo b\u00e1sica",
-    "id": "pr\u00e1ctica_de_campo_b\u00e1sica",
-    "desbloquea": [],
-    "semestre": 3
-  },
-  {
-    "nombre": "Bases inmunol\u00f3gicas",
-    "id": "bases_inmunol\u00f3gicas",
-    "desbloquea": [
-      "patolog\u00eda_i",
-      "bases_de_t\u00e9cnicas_diagn\u00f3sticas"
-    ],
-    "semestre": 4
-  },
-  {
-    "nombre": "Fisiolog\u00eda II",
-    "id": "fisiolog\u00eda_ii",
-    "desbloquea": [
-      "patolog\u00eda_i",
-      "nutrici\u00f3n"
-    ],
-    "semestre": 4
-  },
-  {
-    "nombre": "Farmacolog\u00eda general",
-    "id": "farmacolog\u00eda_general",
-    "desbloquea": [],
-    "semestre": 4
-  },
-  {
-    "nombre": "Agentes biol\u00f3gicos pat\u00f3genos",
-    "id": "agentes_biol\u00f3gicos_pat\u00f3genos",
-    "desbloquea": [
-      "enfermedades_infecciosas_y_parasitarias",
-      "bases_de_t\u00e9cnicas_diagn\u00f3sticas"
-    ],
-    "semestre": 4
-  },
-  {
-    "nombre": "Introducci\u00f3n a la producci\u00f3n animal",
-    "id": "introducci\u00f3n_a_la_producci\u00f3n_animal",
-    "desbloquea": [
-      "nutrici\u00f3n",
-      "maca"
-    ],
-    "semestre": 4
-  },
-  {
-    "nombre": "Bases econ\u00f3micas",
-    "id": "bases_econ\u00f3micas",
-    "desbloquea": [
-      "maplan"
-    ],
-    "semestre": 4
-  },
-  {
-    "nombre": "MAEP",
-    "id": "maep",
-    "desbloquea": [],
-    "semestre": 4
-  },
-  {
-    "nombre": "M\u00f3dulo interno b\u00e1sico",
-    "id": "m\u00f3dulo_interno_b\u00e1sico",
-    "desbloquea": [],
-    "semestre": 4
-  },
-  {
-    "nombre": "Enfermedades infecciosas y parasitarias",
-    "id": "enfermedades_infecciosas_y_parasitarias",
-    "desbloquea": [
-      "salud_p\u00fablica_veterinaria",
-      "patolog\u00eda_en_explotaciones"
-    ],
-    "semestre": 5
-  },
-  {
-    "nombre": "Patolog\u00eda I",
-    "id": "patolog\u00eda_i",
-    "desbloquea": [
-      "patolog\u00eda_ii",
-      "m\u00e9todos_de_exploraci\u00f3n_cl\u00ednica"
-    ],
-    "semestre": 5
-  },
-  {
-    "nombre": "Nutrici\u00f3n",
-    "id": "nutrici\u00f3n",
-    "desbloquea": [
-      "alimentaci\u00f3n"
-    ],
-    "semestre": 5
-  },
-  {
-    "nombre": "Bases de t\u00e9cnicas diagn\u00f3sticas",
-    "id": "bases_de_t\u00e9cnicas_diagn\u00f3sticas",
-    "desbloquea": [],
-    "semestre": 5
-  },
-  {
-    "nombre": "MAIG",
-    "id": "maig",
-    "desbloquea": [
-      "gen\u00e9tica_b\u00e1sica"
-    ],
-    "semestre": 5
-  },
-  {
-    "nombre": "Gen\u00e9tica b\u00e1sica",
-    "id": "gen\u00e9tica_b\u00e1sica",
-    "desbloquea": [
-      "biotecnolog\u00eda_reproductiva",
-      "reproducci\u00f3n"
-    ],
-    "semestre": 6
-  },
-  {
-    "nombre": "Patolog\u00eda II",
-    "id": "patolog\u00eda_ii",
-    "desbloquea": [
-      "patolog\u00eda_iii",
-      "patolog\u00eda_diagn\u00f3stica",
-      "biotecnolog\u00eda_reproductiva",
-      "reproducci\u00f3n",
-      "medicina_nvl_i"
-    ],
-    "semestre": 6
-  },
-  {
-    "nombre": "Alimentaci\u00f3n",
-    "id": "alimentaci\u00f3n",
-    "desbloquea": [
-      "manejos_productivos_i",
-      "manejos_productivos_ii"
-    ],
-    "semestre": 6
-  },
-  {
-    "nombre": "M\u00e9todos de exploraci\u00f3n cl\u00ednica",
-    "id": "m\u00e9todos_de_exploraci\u00f3n_cl\u00ednica",
-    "desbloquea": [
-      "medicina_nvl_i"
-    ],
-    "semestre": 6
-  },
-  {
-    "nombre": "MAAT",
-    "id": "maat",
-    "desbloquea": [],
-    "semestre": 6
-  },
-  {
-    "nombre": "Patolog\u00eda III",
-    "id": "patolog\u00eda_iii",
-    "desbloquea": [],
-    "semestre": 7
-  },
-  {
-    "nombre": "Patolog\u00eda diagn\u00f3stica",
-    "id": "patolog\u00eda_diagn\u00f3stica",
-    "desbloquea": [
-      "medicina_interna_nvl_ii",
-      "anestesiolog\u00eda_y_cirug\u00eda"
-    ],
-    "semestre": 7
-  },
-  {
-    "nombre": "Reproducci\u00f3n",
-    "id": "reproducci\u00f3n",
-    "desbloquea": [
-      "manejos_productivos_i",
-      "manejos_productivos_ii",
-      "obstetricia_y_ginecolog\u00eda"
-    ],
-    "semestre": 7
-  },
-  {
-    "nombre": "Biotecnolog\u00eda reproductiva",
-    "id": "biotecnolog\u00eda_reproductiva",
-    "desbloquea": [
-      "obstetricia_y_ginecolog\u00eda"
-    ],
-    "semestre": 7
-  },
-  {
-    "nombre": "Medicina nvl I",
-    "id": "medicina_nvl_i",
-    "desbloquea": [],
-    "semestre": 7
-  },
-  {
-    "nombre": "Salud p\u00fablica veterinaria",
-    "id": "salud_p\u00fablica_veterinaria",
-    "desbloquea": [
-      "inocuidad_de_los_alimentos",
-      "gesti\u00f3n_ambiental"
-    ],
-    "semestre": 7
-  },
-  {
-    "nombre": "MACA",
-    "id": "maca",
-    "desbloquea": [],
-    "semestre": 7
-  },
-  {
-    "nombre": "Gesti\u00f3n ambiental Abre \u201cImpacto ambiental\u201d)",
-    "id": "gesti\u00f3n_ambiental_abre_impacto_ambiental_",
-    "desbloquea": [],
-    "semestre": 8
-  },
-  {
-    "nombre": "Inocuidad de los alimentos",
-    "id": "inocuidad_de_los_alimentos",
-    "desbloquea": [
-      "aseguramiento_y_calidad_de_los_alimentos",
-      "mabl"
-    ],
-    "semestre": 8
-  },
-  {
-    "nombre": "Manejos productivos I",
-    "id": "manejos_productivos_i",
-    "desbloquea": [],
-    "semestre": 8
-  },
-  {
-    "nombre": "Obstetricia y ginecolog\u00eda",
-    "id": "obstetricia_y_ginecolog\u00eda",
-    "desbloquea": [],
-    "semestre": 8
-  },
-  {
-    "nombre": "Medicina nvl I",
-    "id": "medicina_nvl_i",
-    "desbloquea": [
-      "medicina_interna_nvl_ii"
-    ],
-    "semestre": 8
-  },
-  {
-    "nombre": "Practica pre-profesional",
-    "id": "practica_pre_profesional",
-    "desbloquea": [],
-    "semestre": 8
-  },
-  {
-    "nombre": "MAPLAN",
-    "id": "maplan",
-    "desbloquea": [],
-    "semestre": 8
-  },
-  {
-    "nombre": "M\u00f3dulo int. Ciclo pre-profesional",
-    "id": "m\u00f3dulo_int_ciclo_pre_profesional",
-    "desbloquea": [],
-    "semestre": 8
-  },
-  {
-    "nombre": "Impacto ambiental",
-    "id": "impacto_ambiental",
-    "desbloquea": [],
-    "semestre": 9
-  },
-  {
-    "nombre": "Aseguramiento y calidad de alimentos",
-    "id": "aseguramiento_y_calidad_de_alimentos",
-    "desbloquea": [],
-    "semestre": 9
-  },
-  {
-    "nombre": "Manejos productivos II",
-    "id": "manejos_productivos_ii",
-    "desbloquea": [],
-    "semestre": 9
-  },
-  {
-    "nombre": "Medicina interna nvl II",
-    "id": "medicina_interna_nvl_ii",
-    "desbloquea": [],
-    "semestre": 9
-  },
-  {
-    "nombre": "Anestesiolog\u00eda y cirug\u00eda",
-    "id": "anestesiolog\u00eda_y_cirug\u00eda",
-    "desbloquea": [],
-    "semestre": 9
-  },
-  {
-    "nombre": "Patolog\u00eda en explotaciones",
-    "id": "patolog\u00eda_en_explotaciones",
-    "desbloquea": [],
-    "semestre": 9
-  },
-  {
-    "nombre": "MABL",
-    "id": "mabl",
-    "desbloquea": [],
-    "semestre": 9
-  },
-  {
-    "nombre": "Internado medicina individual",
-    "id": "internado_medicina_individual",
-    "desbloquea": [],
-    "semestre": 10
-  },
-  {
-    "nombre": "Internado producci\u00f3n animal",
-    "id": "internado_producci\u00f3n_animal",
-    "desbloquea": [],
-    "semestre": 10
-  },
-  {
-    "nombre": "Internado medicina preventiva",
-    "id": "internado_medicina_preventiva",
-    "desbloquea": [],
-    "semestre": 10
-  },
-  {
-    "nombre": "Practica profesional",
-    "id": "practica_profesional",
-    "desbloquea": [],
-    "semestre": 10
-  },
-  {
-    "nombre": "Taller de titulaci\u00f3n",
-    "id": "taller_de_titulaci\u00f3n",
-    "desbloquea": [],
-    "semestre": 10
+const ramos = {
+  "Semestre I": {
+    "Bases Moleculares": ["Bases Moleculares y celulares", "Bases celulares"],
+    "Métodos de cuantificación": ["Bioestadística"],
+    "Introducción al manejo de la información": ["Bioestadística"],
+    "Diversidad animal": ["Ecología"],
+    "Orientación a la medicina veterinaria": []
+  },
+  "Semestre II": {
+    "Bases Moleculares y celulares": ["Fisiología I", "Bases inmunológicas", "Agentes biológicos patógenos"],
+    "Bases celulares": ["Fisiología I", "Agentes biológicos patógenos"],
+    "Bioestadística": ["Epidemiología general", "MAIG"],
+    "Ecología": ["Conducta animal", "MAEP"],
+    "Desarrollo y estructura microscópica del organismo animal": [],
+    "Estructura macroscópica del organismo animal": ["Fisiología II", "MAAT"],
+    "Práctica general básica": ["Práctica clínica básica", "Práctica de campo básica"]
+  },
+  "Semestre III": {
+    "Fisiología I": ["Fisiología II", "Farmacología general"],
+    "Epidemiología general": ["Enfermedades infecciosas y parasitarias"],
+    "Estructura macroscópica del organismo animal": [],
+    "Desarrollo y estructura microscópica del organismo animal": [],
+    "Bases económicas": [],
+    "Conducta animal": ["MACA"],
+    "Práctica clínica básica": [],
+    "Práctica de campo básica": []
+  },
+  "Semestre IV": {
+    "Bases inmunológicas": ["Patología I", "Bases de técnicas diagnósticas"],
+    "Fisiología II": ["Patología I", "Nutrición"],
+    "Farmacología general": [],
+    "Agentes biológicos patógenos": ["Enfermedades infecciosas y parasitarias", "Bases de técnicas diagnósticas"],
+    "Introducción a la producción animal": ["Nutrición", "MACA"],
+    "Bases económicas": ["MAPLAN"],
+    "MAEP": [],
+    "Módulo interno básico": []
+  },
+  "Semestre V": {
+    "Enfermedades infecciosas y parasitarias": ["Salud pública veterinaria", "Patología en explotaciones"],
+    "Patología I": ["Patología II", "Métodos de exploración clínica"],
+    "Nutrición": ["Alimentación"],
+    "Bases de técnicas diagnósticas": ["Métodos de exploración clínica"],
+    "MAIG": ["Genética básica"]
+  },
+  "Semestre VI": {
+    "Genética básica": ["Biotecnología reproductiva", "Reproducción"],
+    "Patología II": ["Patología III", "Patología diagnóstica", "Biotecnología reproductiva", "Reproducción", "Medicina nvl I"],
+    "Alimentación": ["Manejos productivos I", "Manejos productivos II"],
+    "Métodos de exploración clínica": ["Medicina nvl I"],
+    "MAAT": []
+  },
+  "Semestre VII": {
+    "Patología III": ["Patología en explotaciones"],
+    "Patología diagnóstica": ["Medicina interna nvl II", "Anestesiología y cirugía"],
+    "Reproducción": ["Manejos productivos I", "Manejos productivos II", "Obstetricia y ginecología"],
+    "Biotecnología reproductiva": ["Obstetricia y ginecología"],
+    "Medicina nvl I": ["Medicina interna nvl II", "Anestesiología y cirugía"],
+    "Salud pública veterinaria": ["Inocuidad de los alimentos", "Gestión ambiental"],
+    "MACA": []
+  },
+  "Semestre VIII": {
+    "Gestión ambiental": ["Impacto ambiental"],
+    "Inocuidad de los alimentos": ["Aseguramiento y calidad de alimentos", "MABL"],
+    "Manejos productivos I": [],
+    "Obstetricia y ginecología": [],
+    "Medicina nvl I": [],
+    "Practica pre-profesional": [],
+    "MAPLAN": [],
+    "Módulo int. Ciclo pre-profesional": []
+  },
+  "Semestre IX": {
+    "Impacto ambiental": [],
+    "Aseguramiento y calidad de alimentos": [],
+    "Manejos productivos II": [],
+    "Medicina interna nvl II": [],
+    "Anestesiología y cirugía": [],
+    "Patología en explotaciones": [],
+    "MABL": []
+  },
+  "Semestre X": {
+    "Internado medicina individual": [],
+    "Internado producción animal": [],
+    "Internado medicina preventiva": [],
+    "Practica profesional": [],
+    "Taller de titulación": []
   }
-];
+};
 
-const estadoRamos = {};
-ramos.forEach(r => estadoRamos[r.id] = { completado: false, desbloqueado: false });
+const aprobados = new Set();
 
-function crearLogicaRamo(ramo) {
-  const div = document.getElementById(ramo.id);
-  div.onclick = () => {
-    const estado = estadoRamos[ramo.id];
-    estado.completado = !estado.completado;
+function crearMalla() {
+  const contenedor = document.getElementById("malla");
+  for (const [semestre, cursos] of Object.entries(ramos)) {
+    const divSemestre = document.createElement("div");
+    divSemestre.className = "semestre";
+    const titulo = document.createElement("h2");
+    titulo.textContent = semestre;
+    divSemestre.appendChild(titulo);
 
-    if (estado.completado) {
-      ramo.desbloquea.forEach(id => {
-        estadoRamos[id].desbloqueado = true;
-      });
+    for (const curso of Object.keys(cursos)) {
+      const divRamo = document.createElement("div");
+      divRamo.className = "ramo locked";
+      divRamo.textContent = curso;
+      divRamo.dataset.nombre = curso;
+      divRamo.addEventListener("click", aprobarRamo);
+      divSemestre.appendChild(divRamo);
     }
 
-    actualizarInterfaz();
-  };
+    contenedor.appendChild(divSemestre);
+  }
+
+  desbloquearIniciales();
 }
 
-function actualizarInterfaz() {
-  ramos.forEach(ramo => {
-    const div = document.getElementById(ramo.id);
-    const estado = estadoRamos[ramo.id];
-
-    if (estado.completado) {
-      div.classList.add("tachado");
-    } else {
-      div.classList.remove("tachado");
-    }
-
-    if (estado.desbloqueado || estado.completado) {
-      div.classList.remove("disabled");
-    } else {
-      div.classList.add("disabled");
+function desbloquearIniciales() {
+  document.querySelectorAll(".ramo").forEach(div => {
+    const nombre = div.dataset.nombre;
+    const requisitos = obtenerRequisitos(nombre);
+    if (requisitos.length === 0) {
+      div.classList.remove("locked");
     }
   });
 }
 
-function iniciarMalla() {
-  ramos.forEach(crearLogicaRamo);
-  // Desbloquear ramos sin ser desbloqueados por otros
-  const idsQueDesbloquean = new Set(ramos.flatMap(r => r.desbloquea));
-  ramos.forEach(r => {
-    if (!idsQueDesbloquean.has(r.id)) {
-      estadoRamos[r.id].desbloqueado = true;
+function obtenerRequisitos(curso) {
+  const requisitos = [];
+  for (const cursos of Object.values(ramos)) {
+    for (const [ramo, dependientes] of Object.entries(cursos)) {
+      if (dependientes.includes(curso)) {
+        requisitos.push(ramo);
+      }
     }
-  });
-  actualizarInterfaz();
+  }
+  return requisitos;
 }
 
-iniciarMalla();
+function aprobarRamo(e) {
+  const div = e.currentTarget;
+  const nombre = div.dataset.nombre;
+  if (div.classList.contains("locked")) return;
+
+  if (!div.classList.contains("approved")) {
+    div.classList.add("approved");
+    aprobados.add(nombre);
+    actualizarDesbloqueos();
+  } else {
+    div.classList.remove("approved");
+    aprobados.delete(nombre);
+    actualizarDesbloqueos();
+  }
+}
+
+function actualizarDesbloqueos() {
+  document.querySelectorAll(".ramo").forEach(div => {
+    const nombre = div.dataset.nombre;
+    const requisitos = obtenerRequisitos(nombre);
+    const desbloqueado = requisitos.every(r => aprobados.has(r));
+
+    if (requisitos.length === 0 || desbloqueado) {
+      div.classList.remove("locked");
+    } else {
+      if (!div.classList.contains("approved")) {
+        div.classList.add("locked");
+      }
+    }
+  });
+}
+
+crearMalla();
