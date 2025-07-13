@@ -1,95 +1,86 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
-
 body {
-  font-family: 'Fredoka', sans-serif;
-  background-color: #fefae0;
-  color: #283618;
-  padding: 20px;
-  overflow-x: auto;
+  font-family: 'Baloo 2', cursive;
+  background-color: #f5f1ec;
+  color: #4e342e;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #8d6e63;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+  background-image: url('https://i.imgur.com/X4ZfMfT.png');
+  background-size: contain;
+  background-repeat: repeat;
+}
+
+header img {
+  max-width: 200px;
+  border-radius: 20px;
 }
 
 h1 {
-  text-align: center;
-  color: #606c38;
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Cheetah_portrait.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 180px;
-  line-height: 180px;
-  color: white;
-  font-size: 3em;
-  text-shadow: 2px 2px 4px #000000;
-  border-radius: 12px;
+  font-size: 2.5rem;
+  margin-top: 0.5rem;
 }
 
 #malla {
   display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin-top: 20px;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
 }
 
 .semestre {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 240px;
-  background-color: #ccd5ae;
-  padding: 10px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-left: 6px solid #a1887f;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 .semestre h2 {
-  text-align: center;
-  background-color: #bc6c25;
-  color: white;
+  background-color: #d7ccc8;
+  padding: 0.5rem;
   border-radius: 10px;
-  padding: 8px;
-  font-size: 1.2em;
+  font-size: 1.5rem;
 }
 
 .ramo {
-  padding: 12px;
-  background-color: #dda15e;
-  border-radius: 14px;
-  text-align: center;
+  display: inline-block;
+  background-color: #efebe9;
+  padding: 0.5rem 1rem;
+  border: 2px solid #8d6e63;
+  border-radius: 10px;
+  margin: 0.5rem;
   cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s, transform 0.2s;
   position: relative;
-  transition: 0.3s;
-  font-weight: bold;
-  color: white;
-  font-size: 0.95em;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 
-.ramo::before {
-  content: "🐾 ";
-  font-size: 1em;
+.ramo.locked {
+  background-color: #d7ccc8;
+  color: #aaa;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
-.ramo:hover {
-  background-color: #bc6c25;
+.ramo.approved {
+  background-color: #a5d6a7;
+  color: #2e7d32;
+  border-color: #2e7d32;
 }
 
-.ramo.disabled {
-  pointer-events: none;
-  background-color: #e9edc9;
-  color: #999;
-  opacity: 0.5;
+.ramo:hover:not(.locked) {
+  transform: scale(1.05);
 }
 
-.ramo.tachado {
-  opacity: 0.4;
-}
-
-.ramo.tachado::after {
-  content: "";
+.ramo::after {
+  content: '🐾';
   position: absolute;
-  top: 50%;
-  left: 10%;
-  width: 80%;
-  height: 2px;
-  background-color: red;
-  transform: rotate(-10deg);
+  right: 5px;
+  bottom: 5px;
+  font-size: 1rem;
+  opacity: 0.4;
 }
